@@ -10,7 +10,7 @@ import org.xq.source.ClickSource;
 import java.time.Duration;
 
 /**
- * 以下两种水位线生成器都是周期性生成水位线的
+ * 以下两种水位线生成器都是周期性生成水位线的，周期默认 200ms
  *
  * @author xuqi
  */
