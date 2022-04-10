@@ -1,0 +1,2 @@
+Event(user=Alice, url=./prod?id=100, timestamp=3000)
+Event(user=Bob, url=./home, timestamp=3000)
