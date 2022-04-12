@@ -4,6 +4,7 @@ import org.apache.flink.api.common.eventtime.SerializableTimestampAssigner;
 import org.apache.flink.api.common.eventtime.WatermarkStrategy;
 import org.apache.flink.api.common.functions.AggregateFunction;
 import org.apache.flink.api.common.functions.MapFunction;
+import org.apache.flink.configuration.Configuration;
 import org.apache.flink.streaming.api.datastream.SingleOutputStreamOperator;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 import org.apache.flink.streaming.api.functions.windowing.ProcessWindowFunction;
@@ -21,6 +22,7 @@ import java.time.Duration;
  */
 public class ProcessLateDataExample {
     public static void main(String[] args) throws Exception {
+        // StreamExecutionEnvironment env = StreamExecutionEnvironment.createLocalEnvironmentWithWebUI(new Configuration());
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
         env.setParallelism(1);
 
@@ -85,7 +87,8 @@ public class ProcessLateDataExample {
         public void process(String url, ProcessWindowFunction<Long, UrlViewCountExample.UrlViewCount, String, TimeWindow>.Context context, Iterable<Long> elements, Collector<UrlViewCountExample.UrlViewCount> out) throws Exception {
             long start = context.window().getStart();
             long end = context.window().getEnd();
-            out.collect(new UrlViewCountExample.UrlViewCount(url, elements.iterator().next(), start, end));
+            long l = context.currentWatermark();
+            out.collect(new UrlViewCountExample.UrlViewCount(url + "  :  " + l, elements.iterator().next(), start, end));
         }
     }
 }
