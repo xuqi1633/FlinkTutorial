@@ -18,7 +18,7 @@ public class StreamWordCount {
     public static void main(String[] args) throws Exception {
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
 
-        DataStreamSource<String> lineDSS = env.socketTextStream("test112", 6666);
+        DataStreamSource<String> lineDSS = env.socketTextStream(args[0], 6666);
 
         SingleOutputStreamOperator<Tuple2<String, Long>> wordAndOne = lineDSS
                 .flatMap((String line, Collector<String> words) -> {

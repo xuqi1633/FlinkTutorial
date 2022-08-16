@@ -18,7 +18,8 @@ public class SinkToKafkaTest {
         Properties properties = new Properties();
         properties.put("bootstrap.servers", "test112:9092");
 
-        DataStreamSource<String> stream = env.readTextFile("input/clicks.csv");
+        // DataStreamSource<String> stream = env.readTextFile("input/clicks.csv");
+        DataStreamSource<String> stream = env.socketTextStream(args[0], Integer.parseInt(args[1]));
 
         stream.addSink(new FlinkKafkaProducer<>(
                 "clicks", new SimpleStringSchema(), properties));

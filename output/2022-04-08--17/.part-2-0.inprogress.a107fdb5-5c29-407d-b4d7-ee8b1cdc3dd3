@@ -1,2 +1,0 @@
-Event(user=Alice, url=./prod?id=200, timestamp=3500)
-Event(user=Bob, url=./prod?id=1, timestamp=2300)

@@ -16,10 +16,12 @@ public class SourceKafkaTest {
         env.setParallelism(1);
 
         Properties properties = new Properties();
-        properties.setProperty("bootstrap.servers", "test112:9092, test-123:9092");
+        properties.setProperty("bootstrap.servers", "hadoop1:9092");
         properties.setProperty("group.id", "consumer-group");
-        properties.setProperty("key.serializer",
-                "org.apache.kafka.common.serialization.StringDeserializer");
+        // properties.setProperty("key.serializer",
+        //         "org.apache.kafka.common.serialization.StringDeserializer");
+        // properties.setProperty("value.serializer",
+        //         "org.apache.kafka.common.serialization.StringDeserializer");
         properties.setProperty("auto.offset.reset", "latest");
 
         DataStreamSource<String> stream =

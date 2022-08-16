@@ -35,7 +35,8 @@ public class BillCheckExample {
                 /*.fromElements(
                         Tuple3.of("order-0", "app", 6500L),
                         Tuple3.of("order-1", "app", 1000L),
-                        Tuple3.of("order-2", "app", 2000L))*/
+                        Tuple3.of("order-2", "app", 2000L))
+                .map(data -> data.f0+" "+data.f1+" "+data.f2)*/
 
                 .socketTextStream("localhost", 7777)
                 .map(data -> {
@@ -57,7 +58,8 @@ public class BillCheckExample {
                 /*.fromElements(
                         Tuple4.of("order-0", "third-party", "success", 7000L),
                         Tuple4.of("order-1", "third-party", "success", 6600L),
-                        Tuple4.of("order-3", "third-party", "success", 4000L))*/
+                        Tuple4.of("order-3", "third-party", "success", 4000L))
+                .map(data -> data.f0+" "+data.f1+" "+data.f2+" "+data.f3)*/
 
                 .socketTextStream("localhost", 9999)
                 .map(data -> {
